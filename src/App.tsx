@@ -24,16 +24,20 @@ export default function App() {
     );
   };
 
+  const handleDeleteTodo = (id: string) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  };
+
   let todosContent = <p>No todos yet - create a new one above!</p>;
   if (todos.length != 0) {
     todosContent = (
-      <TodoList todos={todos} onToggleTodoCompletion={handleTodoCompletion} />
+      <TodoList
+        todos={todos}
+        onToggleTodoCompletion={handleTodoCompletion}
+        onDeleteTodo={handleDeleteTodo}
+      />
     );
   }
-
-  const handleDeleteTodo = (id: string) => {
-    // Delete todo logic here
-  };
 
   return (
     <>

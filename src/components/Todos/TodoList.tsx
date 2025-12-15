@@ -4,11 +4,13 @@ import type { Todo } from "../../app/types";
 interface TodoListProps {
   todos: Todo[];
   onToggleTodoCompletion: (id: string) => void;
+  onDeleteTodo: (id: string) => void;
 }
 
 export default function TodoList({
   todos,
   onToggleTodoCompletion,
+  onDeleteTodo,
 }: TodoListProps) {
   return (
     <ul>
@@ -17,6 +19,7 @@ export default function TodoList({
           key={todo.id}
           todo={todo}
           onToggleCompletion={onToggleTodoCompletion}
+          onDelete={onDeleteTodo}
         />
       ))}
     </ul>

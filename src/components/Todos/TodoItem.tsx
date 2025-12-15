@@ -3,9 +3,14 @@ import type { Todo } from "../../app/types";
 interface TodoItemProps {
   todo: Todo;
   onToggleCompletion: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
-export default function TodoItem({ todo, onToggleCompletion }: TodoItemProps) {
+export default function TodoItem({
+  todo,
+  onToggleCompletion,
+  onDelete,
+}: TodoItemProps) {
   const { id, title, isCompleted } = todo;
 
   return (
@@ -16,7 +21,7 @@ export default function TodoItem({ todo, onToggleCompletion }: TodoItemProps) {
         onChange={() => onToggleCompletion(id)}
       />
       <span>{title}</span>
-      <button>Delete</button>
+      <button onClick={() => onDelete(id)}>Delete</button>
     </li>
   );
 }
