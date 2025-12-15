@@ -41,7 +41,7 @@ export default function App() {
         <h1>React Todos</h1>
       </header>
       <main>
-        <AddTodo handleAddTodo={handleAddTodo} />
+        <AddTodo onAddTodo={handleAddTodo} />
         <section>
           <h2>Todos</h2>
           {todosContent}

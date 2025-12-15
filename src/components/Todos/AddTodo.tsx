@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 interface AddTodoProps {
-  handleAddTodo: (title: string) => void;
+  onAddTodo: (title: string) => void;
 }
 
-export default function AddTodo({ handleAddTodo }: AddTodoProps) {
+export default function AddTodo({ onAddTodo }: AddTodoProps) {
   const [newTodo, setNewTodo] = useState("");
 
   const handleNewTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,7 +13,7 @@ export default function AddTodo({ handleAddTodo }: AddTodoProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    handleAddTodo(newTodo);
+    onAddTodo(newTodo);
     // Clear the input field after adding new todo
     setNewTodo("");
   };
