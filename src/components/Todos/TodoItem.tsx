@@ -1,11 +1,20 @@
 import type { Todo } from "../../app/types";
 
-export default function TodoItem({ todo }: { todo: Todo }) {
-  const { title, isCompleted } = todo;
+interface TodoItemProps {
+  todo: Todo;
+  onToggleCompletion: (id: string) => void;
+}
+
+export default function TodoItem({ todo, onToggleCompletion }: TodoItemProps) {
+  const { id, title, isCompleted } = todo;
 
   return (
     <li>
-      <input type="checkbox" checked={isCompleted} onChange={() => {}} />
+      <input
+        type="checkbox"
+        checked={isCompleted}
+        onChange={() => onToggleCompletion(id)}
+      />
       <span>{title}</span>
       <button>Delete</button>
     </li>

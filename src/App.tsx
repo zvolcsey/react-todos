@@ -7,11 +7,6 @@ import type { Todo } from "./app/types";
 export default function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  let todosContent = <p>No todos yet - create a new one above!</p>;
-  if (todos.length != 0) {
-    todosContent = <TodoList todos={todos} />;
-  }
-
   const handleAddTodo = (title: string) => {
     const newTodo: Todo = {
       id: uuidv4(),
@@ -20,6 +15,21 @@ export default function App() {
     };
     setTodos((prevTodos) => [newTodo, ...prevTodos]);
   };
+
+  const handleTodoCompletion = (id: string) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        id === todo.id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+      )
+    );
+  };
+
+  let todosContent = <p>No todos yet - create a new one above!</p>;
+  if (todos.length != 0) {
+    todosContent = (
+      <TodoList todos={todos} onToggleTodoCompletion={handleTodoCompletion} />
+    );
+  }
 
   const handleDeleteTodo = (id: string) => {
     // Delete todo logic here

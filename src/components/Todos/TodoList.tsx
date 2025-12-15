@@ -1,11 +1,23 @@
 import TodoItem from "./TodoItem";
 import type { Todo } from "../../app/types";
 
-export default function TodoList({ todos }: { todos: Todo[] }) {
+interface TodoListProps {
+  todos: Todo[];
+  onToggleTodoCompletion: (id: string) => void;
+}
+
+export default function TodoList({
+  todos,
+  onToggleTodoCompletion,
+}: TodoListProps) {
   return (
     <ul>
       {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} />
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onToggleCompletion={onToggleTodoCompletion}
+        />
       ))}
     </ul>
   );
