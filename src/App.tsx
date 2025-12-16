@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddTodo from "./components/Todos/AddTodo";
 import TodoList from "./components/Todos/TodoList";
 import { v4 as uuidv4 } from "uuid";
@@ -7,25 +7,51 @@ import type { Todo } from "./app/types";
 export default function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
+  useEffect(() => {
+    // Load todos from localStorage on initial render
+    try {
+      const storedTodos = JSON.parse(localStorage.getItem("todos") || "[]");
+      setTodos(storedTodos);
+    } catch (error) {
+      console.error("Failed to load todos from localStorage:", error);
+    }
+  }, []);
+
   const handleAddTodo = (title: string) => {
     const newTodo: Todo = {
       id: uuidv4(),
       title,
       isCompleted: false,
     };
-    setTodos((prevTodos) => [newTodo, ...prevTodos]);
+    const updatedTodos = [newTodo, ...todos];
+    setTodos(updatedTodos);
+    try {
+      localStorage.setItem("todos", JSON.stringify(updatedTodos));
+    } catch (error) {
+      console.error("Failed to save todos to localStorage:", error);
+    }
   };
 
   const handleTodoCompletion = (id: string) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        id === todo.id ? { ...todo, isCompleted: !todo.isCompleted } : todo
-      )
+    const updatedTodos = todos.map((todo) =>
+      id === todo.id ? { ...todo, isCompleted: !todo.isCompleted } : todo
     );
+    setTodos(updatedTodos);
+    try {
+      localStorage.setItem("todos", JSON.stringify(updatedTodos));
+    } catch (error) {
+      console.error("Failed to save todos to localStorage:", error);
+    }
   };
 
   const handleDeleteTodo = (id: string) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+    try {
+      localStorage.setItem("todos", JSON.stringify(updatedTodos));
+    } catch (error) {
+      console.error("Failed to save todos to localStorage:", error);
+    }
   };
 
   let todosContent = <p>No todos yet - create a new one above!</p>;
