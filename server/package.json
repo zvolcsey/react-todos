@@ -1,0 +1,25 @@
+{
+  "name": "todo-app-server",
+  "private": true,
+  "version": "1.0.0",
+  "description": "This is the server side of a todo app built with Node.js and Express.",
+  "author": "Zoltán Völcsey",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zvolcsey/react-todos"
+  },
+  "type": "module",
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "typescript": "^5.9.3"
+  }
+}
