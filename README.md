@@ -1,6 +1,6 @@
-# React Todo Web App
+# Full-Stack Todo Web App
 
-A simple todo web application with React and TypeScript.
+A simple full-stack todo web application with React, TypeScript and Express.
 Add, complete, and delete todos with localStorage persistence.
 
 ## Table of Contents
@@ -28,10 +28,16 @@ Coming soon...
 - TypeScript
 - Vite
 - CSS Modules
+- Express
 
 ## Run Locally
 
 ```bash
+  cd client
+  npm install
+  npm run dev
+
+  cd ../server
   npm install
   npm run dev
 ```
