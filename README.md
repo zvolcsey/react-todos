@@ -28,7 +28,9 @@ Coming soon...
 - TypeScript
 - Vite
 - CSS Modules
+- Node.js
 - Express
+- Swagger for API documentation
 
 ## Run Locally
 
@@ -38,9 +40,14 @@ Coming soon...
   npm run dev
 
   cd ../server
+  cp .env.example .env
   npm install
   npm run dev
 ```
+
+Client availabe at http://localhost:5173
+Api v1 available at http://localhost:3000/api/v1
+Api docs available at http://localhost:3000/api-docs/v1
 
 ## License
 

@@ -1,10 +1,27 @@
 import express, { type Application } from "express";
 
+import todoRoutes from "./routes/v1/todos.js";
+import { setupSwagger } from "./swagger/swagger.js";
+import { errorHandler } from "./middleware/middleware.js";
+
 const app: Application = express();
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
   console.log(req.method);
-  res.json({ message: "Welcome to the Todo App API!" });
+  res.json({ message: "Welcome to the Todos API!" });
 });
+
+app.get("/api/v1", (req, res) => {
+  console.log(req.method);
+  res.json({ message: "Welcome to the Todos API v1!" });
+});
+
+setupSwagger(app);
+
+app.use("/api/v1", todoRoutes);
+
+app.use(errorHandler);
 
 export default app;
