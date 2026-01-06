@@ -31,17 +31,39 @@ Coming soon...
 - Node.js
 - Express
 - Swagger for API documentation
+- Docker & Docker Compose
+- PostgreSQL
 
 ## Run Locally
 
+### Prerequisites
+
+- Node.js v20+ (LTS)
+- Docker v4.55+ (Bundles Docker Engine v29 and Compose v2)
+
+### Steps
+
 ```bash
+  git clone
+
   cd client
   npm install
   npm run dev
 
   cd ../server
+  # Create .env file
   cp .env.example .env
+  # Fill the .env file with DATABASE_URL and other configs
+  # Start PostgreSQL Docker container
+  docker-compose up -d
   npm install
+  # Create tables
+  npx prisma migrate dev
+  # Generate Prisma Client
+  npx prisma generate
+  # Seed database
+  npx prisma db seed
+  # Run the server
   npm run dev
 ```
 
